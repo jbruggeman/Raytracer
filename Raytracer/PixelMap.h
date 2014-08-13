@@ -1,3 +1,6 @@
+#ifndef PIXELMAP_H
+#define PIXELMAP_H
+
 #include "Common.h"
 
 class PixelMap { 
@@ -12,3 +15,5 @@ class PixelMap {
 		double _height, _width, _focal_distance;
 		int _vsize, _hsize;
 };
+
+#endif /* PIXELMAP_H */

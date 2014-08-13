@@ -1,3 +1,6 @@
+#ifndef COMMON_H
+#define COMMON_H
+
 #include <vector>
 #include <cmath>
 
@@ -25,27 +28,10 @@ class Colour {
 		uint8_t _b;
 };
 
-class Polygon { 
-	public: 
-		Polygon(Point*, Colour*, bool);
-		~Polygon();
-		virtual Point* closestIntersect(Point *, Point *) =0;
-
-   		Point* _p;
-		Colour* _c;
-		bool _ls;
-};
-
-class Sphere:public Polygon {
-    public:
-		Sphere(Point*, Colour*, double, bool);
-		Point* closestIntersect(Point*, Point*);
- 
-		double _r;
-};
-
 double point_distance(Point *, Point*);
 
 double dot_product(Point *, Point*);
 
 double calc_illumination(Point *, Point*);
+
+#endif /* COMMON_H */

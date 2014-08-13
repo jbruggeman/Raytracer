@@ -1,4 +1,5 @@
 #include "PixelMap.h"
+#include "Sphere.h"
 
 #include <cstdio>
 #include <iostream>
@@ -11,8 +12,8 @@ vector<Polygon *> polygons;
 
 int main() {
 
-	int vsize = 1280, hsize = 720;
-	double height = 16.0, width = 9.0;
+	int vsize = 480, hsize = 640;
+	double height = 3.0, width = 4.0;
 	double distance = -5;
 	Point* origin = new Point(-10, 0, 0);
 	
