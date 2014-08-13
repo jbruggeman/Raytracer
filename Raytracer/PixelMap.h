@@ -5,10 +5,10 @@
 
 class PixelMap { 
 	public:
-		PixelMap(double, double, double, int, int );
+		PixelMap(double focal_distance, double height, double width, int vsize, int hsize);
 		int query_height();
 		int query_width();
-		Point* query_location(int, int);
+		Point* query_location(int row, int column);
 
 	private:
 		Point _centre; 

@@ -75,6 +75,7 @@
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="EasyBMP.cpp" />
     <ClCompile Include="PixelMap.cpp" />
+    <ClCompile Include="Point.cpp" />
     <ClCompile Include="Polygon.cpp" />
     <ClCompile Include="RayTracer.cpp" />
     <ClCompile Include="Sphere.cpp" />
@@ -86,6 +87,7 @@
     <ClInclude Include="EasyBMP_DataStructures.h" />
     <ClInclude Include="EasyBMP_VariousBMPutilities.h" />
     <ClInclude Include="PixelMap.h" />
+    <ClInclude Include="Point.h" />
     <ClInclude Include="Polygon.h" />
     <ClInclude Include="Sphere.h" />
   </ItemGroup>

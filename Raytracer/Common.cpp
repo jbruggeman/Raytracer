@@ -3,14 +3,6 @@
 #include <cstdio>
 #include <iostream>
 
-Point::Point()
-	{}
-
-Point::Point(double x, double y, double z):
-	_x(x), _y(y), _z(z) 
-{
-}
-
 Colour::Colour()
 {
 }
@@ -19,6 +11,7 @@ Colour::Colour(uint8_t r, uint8_t g, uint8_t b):
 	_r(r), _g(g), _b(b) 
 {
 }
+
 double point_distance(Point* p1, Point* p2) { 
 	return sqrt(pow((p1->_x - p2->_x),2) + pow((p1->_y - p2->_y),2) + pow((p1->_z - p2->_z),2));
 }
