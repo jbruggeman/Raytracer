@@ -1,9 +1,0 @@
-﻿Build started 13/08/2014 6:16:25 PM.
-     1>Project "C:\dev\Raytracer2\Raytracer\Raytracer.vcxproj" on node 2 (clean target(s)).
-     1>_PrepareForClean:
-         Deleting file "Debug\Raytracer.lastbuildstate".
-     1>Done Building Project "C:\dev\Raytracer2\Raytracer\Raytracer.vcxproj" (clean target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:00.01
