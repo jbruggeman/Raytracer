@@ -14,6 +14,34 @@ Point::Point(double x, double y, double z):
 	mX(x), mY(y), mZ(z), mValid(true)
 {
 }
+		
+Point& Point::operator+=(const Point &rhs) {
+	mX += rhs.x();
+	mY += rhs.y();
+	mZ += rhs.z();
+
+	return *this;
+}
+		
+Point& Point::operator-=(const Point &rhs) {
+	mX -= rhs.x();
+	mY -= rhs.y();
+	mZ -= rhs.z();
+
+	return *this;
+}
+
+const Point Point::operator+(const Point &rhs) {
+	Point result = *this;
+	result += rhs;
+	return result;
+}
+
+const Point Point::operator-(const Point &rhs) {
+	Point result = *this;
+	result -= rhs;
+	return result;
+}
 
 void Point::print() {
 	cout << "X: " << mX << " Y: " << mY << " Z: " << mZ << endl;

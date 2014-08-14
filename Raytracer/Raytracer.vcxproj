@@ -72,7 +72,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Common.cpp" />
+    <ClCompile Include="Color.cpp" />
     <ClCompile Include="EasyBMP.cpp" />
     <ClCompile Include="PixelMap.cpp" />
     <ClCompile Include="Point.cpp" />
@@ -81,7 +81,7 @@
     <ClCompile Include="Sphere.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Common.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="EasyBMP.h" />
     <ClInclude Include="EasyBMP_BMP.h" />
     <ClInclude Include="EasyBMP_DataStructures.h" />

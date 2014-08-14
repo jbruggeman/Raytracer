@@ -7,22 +7,17 @@ Sphere::Sphere(const Point& center, const Color& color, double radius, bool isLi
 	{}
 
 //returns 0 if there is no point of intersection.
-Point Sphere::closestIntersect(const Point& p0, const Point& p1) {
-	//determining the vector
-	double dx0 = p1.x() - p0.x();
-	double dy0 = p1.y() - p0.y();
-	double dz0 = p1.z() - p0.z();
-
+Point Sphere::closestIntersect(const Point& origin, const Point& directionVector) {
 	//creating the unit vectors
-	double divisor = abs(dx0) + abs(dy0) + abs(dz0);
-	double dx = dx0 / divisor;
-	double dy = dy0 / divisor;
-	double dz = dz0 / divisor;
+	double divisor = abs(directionVector.x()) + abs(directionVector.y()) + abs(directionVector.z());
+	double dx = directionVector.x() / divisor;
+	double dy = directionVector.y() / divisor;
+	double dz = directionVector.z() / divisor;
 
 	//origin coords
-	double x0 = p0.x();
-	double y0 = p0.y();
-	double z0 = p0.z();
+	double x0 = origin.x();
+	double y0 = origin.y();
+	double z0 = origin.z();
 
 	//Center of the sphere
 	double cx = mCenter.x();

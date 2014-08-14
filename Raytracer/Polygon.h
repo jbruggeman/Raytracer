@@ -8,7 +8,7 @@ class Polygon {
 	public: 
 		Polygon(const Point& center, const Color& color, bool);
 		~Polygon();
-		virtual Point closestIntersect(const Point& p0, const Point& p1) = 0;
+		virtual Point closestIntersect(const Point& origin, const Point& directionVector) = 0;
 
 		bool isLightSource() { return mIsLightSource; }
 		Point center() { return mCenter; }

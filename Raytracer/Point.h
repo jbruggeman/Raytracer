@@ -10,6 +10,11 @@ class Point {
 	public:
 		Point();
 		Point(double x, double y, double z);
+		
+		Point& operator+=(const Point &rhs);
+		Point& operator-=(const Point &rhs);
+		const Point operator+(const Point &rhs); 
+		const Point operator-(const Point &rhs); 
  
 	public:
 		double x() const { return mX; } 

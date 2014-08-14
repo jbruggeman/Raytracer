@@ -10,8 +10,8 @@
 using namespace std;
 
 // size of the resulting image
-static const int horizontalPixels = 1000;
-static const int verticalPixels = 750;
+static const int horizontalPixels = 40;
+static const int verticalPixels = 30;
 
 // input 
 static const double width = 16.0;
@@ -54,11 +54,17 @@ int main() {
 			Point closest_point;
 
 			for(unsigned int k=0; k < polygons.size(); k++) {
-				Point p = polygons[k]->closestIntersect(origin, pixelMapPoint);
+				Point directionVector = pixelMapPoint - origin;
+				Point p = polygons[k]->closestIntersect(origin, directionVector);
 			
 				//getting the distance to the point
 				if(p.valid()) {
 					t_dist = Point::point_distance(p, origin);
+					p.print();
+					origin.print();
+					pixelMapPoint.print();
+					cout << endl;
+					//cout << "t_dist: " << t_dist << endl;
 				} else {
 					t_dist = -1;
 				}
@@ -115,7 +121,7 @@ int main() {
  
 	Output.WriteToFile( "output.bmp" );
 
-	//cin >> stopper;
+	cin >> stopper;
 
 	return 0;
 }
