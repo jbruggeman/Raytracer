@@ -1,30 +1,32 @@
 #include "PixelMap.h"
 
-PixelMap::PixelMap(double focal_distance, double height, double width, int vsize, int hsize):
-	_focal_distance(focal_distance),  _height(height), _width(width), _vsize(vsize), _hsize(hsize) 
+PixelMap::PixelMap(double focalDistance, double height, double width, int verticalPixels, int horizontalPixels):
+					mFocalDistance(focalDistance),  
+					mHeight(height), 
+					mWidth(width), 
+					mVerticalPixels(verticalPixels), 
+					mHorizontalPixels(horizontalPixels), 
+					mCenter(Point(0.0, 0.0, 0.0)) 
 {
-	_centre._x = 0;
-	_centre._y = 0;
-	_centre._z = 0;
 }
 
-Point* PixelMap::query_location(int row, int column) {
-	if(row >= _vsize || column >= _hsize)
-		return 0;
-
-	double vdivisor = double(_vsize) - 1;
-	double hdivisor = double(_hsize) - 1;
-
-	double vstep = _height/vdivisor;
-	double hstep = _width/hdivisor;
-
-	double vcorner = -_height/2;
-	double hcorner = -_width/2;
+Point PixelMap::queryLocation(int row, int column) {
+	if(row >= mVerticalPixels || column >= mHorizontalPixels) {
+		return Point();
+	}
 	
-	Point* temp = new Point;
-	temp->_x = _focal_distance;
-	temp->_y = vcorner + double(row)*vstep;
-	temp->_z = hcorner + double(column)*hstep;
+	double horizontalSteps = double(mHorizontalPixels) - 1;
+	double verticalSteps = double(mVerticalPixels) - 1;
+	
+	double horizontalStepSize = mWidth / horizontalSteps;
+	double verticalStepSize = mHeight / verticalSteps;
+	
+	double bottomLeftZCoord = -mWidth / 2.0;
+	double bottomLeftYCoord = -mHeight / 2.0;
+	
+	double x = mFocalDistance;
+	double y = bottomLeftYCoord + double(row) * verticalStepSize;
+	double z = bottomLeftZCoord + double(column) * horizontalStepSize;
 
-	return temp;
+	return Point(x, y, z);
 }

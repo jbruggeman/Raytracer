@@ -5,10 +5,11 @@
 
 class Sphere: public Polygon {
     public:
-		Sphere(Point*, Colour*, double, bool);
-		Point* closestIntersect(Point*, Point*);
- 
-		double _r;
+		Sphere(Point center, Color color, double radius, bool isLightSource);
+		Point closestIntersect(Point p0, Point p1);
+		
+	protected:
+		double mRadius;
 };
 
 #endif /* SPHERE_H */

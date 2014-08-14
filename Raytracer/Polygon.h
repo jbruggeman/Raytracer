@@ -5,13 +5,18 @@
 
 class Polygon { 
 	public: 
-		Polygon(Point*, Colour*, bool);
+		Polygon(Point Center, Color, bool);
 		~Polygon();
-		virtual Point* closestIntersect(Point *, Point *) =0;
+		virtual Point closestIntersect(Point p0, Point p1) = 0;
 
-   		Point* _p;
-		Colour* _c;
-		bool _ls;
+		bool isLightSource() { return mIsLightSource; }
+		Point center() { return mCenter; }
+		Color color() { return mColor; }
+
+	protected:
+   		Point mCenter;
+		Color mColor;
+		bool mIsLightSource;
 };
 
 #endif /* POLYGON_H */

@@ -1,11 +1,9 @@
 #include "Polygon.h"
 
-Polygon::Polygon(Point* p, Colour* c, bool ls):
-	_p(p), _c(c), _ls(ls)
+Polygon::Polygon(Point center, Color color, bool isLightSource):
+	mCenter(center), mColor(color), mIsLightSource(isLightSource)
 {
 }
 
 Polygon::~Polygon() {
-	delete _p;
-	delete _c;
 }
