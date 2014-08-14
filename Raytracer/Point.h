@@ -4,7 +4,7 @@
 class Point {
 	public:
 		static double point_distance(Point p1, Point p2);
-		static double dot_product(Point p1, Point p2);
+		static double dot(Point p1, Point p2);
 		static double calc_illumination(Point p1, Point p2);
 
 	public:
@@ -13,8 +13,8 @@ class Point {
 		
 		Point& operator+=(const Point &rhs);
 		Point& operator-=(const Point &rhs);
-		const Point operator+(const Point &rhs); 
-		const Point operator-(const Point &rhs); 
+		const Point operator+(const Point &rhs) const; 
+		const Point operator-(const Point &rhs) const; 
  
 	public:
 		double x() const { return mX; } 

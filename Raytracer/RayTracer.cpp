@@ -10,8 +10,8 @@
 using namespace std;
 
 // size of the resulting image
-static const int horizontalPixels = 40;
-static const int verticalPixels = 30;
+static const int horizontalPixels = 20;
+static const int verticalPixels = 15;
 
 // input 
 static const double width = 16.0;
@@ -29,7 +29,7 @@ int main() {
 	polygons.push_back(new Sphere(Point(15, 5, 5), Color(80, 0, 0), 3.0, false));
 	polygons.push_back(new Sphere(Point(15, 5, -5), Color(0, 80, 0), 3.0, false));
 	polygons.push_back(new Sphere(Point(15, -5, 5), Color(0, 0, 80), 3.0, false));
-	polygons.push_back(new Sphere(Point(-15, 0, 0), Color(127, 127, 127), 0, true));
+	polygons.push_back(new Sphere(Point(15, 10, 10), Color(127, 127, 127), 0, true));
 
 	BMP Output;
 	Output.SetSize(horizontalPixels, verticalPixels);
@@ -56,14 +56,12 @@ int main() {
 			for(unsigned int k=0; k < polygons.size(); k++) {
 				Point directionVector = pixelMapPoint - origin;
 				Point p = polygons[k]->closestIntersect(origin, directionVector);
+
+				
 			
 				//getting the distance to the point
 				if(p.valid()) {
 					t_dist = Point::point_distance(p, origin);
-					p.print();
-					origin.print();
-					pixelMapPoint.print();
-					cout << endl;
 					//cout << "t_dist: " << t_dist << endl;
 				} else {
 					t_dist = -1;

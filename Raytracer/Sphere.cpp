@@ -1,48 +1,64 @@
 #include "Sphere.h"
 
 #include <cmath>
+#include <iostream>
+
+using namespace std;
 
 Sphere::Sphere(const Point& center, const Color& color, double radius, bool isLightSource): 
-	Polygon(center, color, isLightSource), mRadius(radius)
-	{}
+			   Polygon(center, color, isLightSource), 
+	           mRadius(radius)
+{
+}
 
-//returns 0 if there is no point of intersection.
+// see http://wiki.cgsociety.org/index.php/Ray_Sphere_Intersection
 Point Sphere::closestIntersect(const Point& origin, const Point& directionVector) {
-	//creating the unit vectors
-	double divisor = abs(directionVector.x()) + abs(directionVector.y()) + abs(directionVector.z());
-	double dx = directionVector.x() / divisor;
-	double dy = directionVector.y() / divisor;
-	double dz = directionVector.z() / divisor;
+	//transform to object space. This involves moving the sphere to 0,0 and creating a rayOrigin
 
-	//origin coords
-	double x0 = origin.x();
-	double y0 = origin.y();
-	double z0 = origin.z();
+	Point rayOrigin = origin - mCenter;
 
-	//Center of the sphere
-	double cx = mCenter.x();
-	double cy = mCenter.y(); 
-	double cz = mCenter.z(); 
+	// create the unit vector
+	double dx = directionVector.x();
+	double dy = directionVector.y();
+	double dz = directionVector.z();
 
-	//radius of the sphere
+	double ox = rayOrigin.x();
+	double oy = rayOrigin.y();
+	double oz = rayOrigin.z();
+	
 	double r = mRadius;
 
-	double a = dx*dx + dy*dy + dz*dz;
-	double b = 2*dx*(x0-cx) +  2*dy*(y0-cy) +  2*dz*(z0-cz);
-	double c = cx*cx + cy*cy + cz*cz + x0*x0 + y0*y0 + z0*z0 
-		+ (-2)*(cx*x0 + cy*y0 + cz*z0) - r*r;
+	double a = Point::dot(directionVector, directionVector);
+	double b = 2.0 * Point::dot(directionVector, rayOrigin);
+	double c = Point::dot(rayOrigin, rayOrigin) - r * r; 
 
-	double inner = b*b-4*a*c;
+	double discriminant = b*b-4*a*c;
 
-	if(inner < 0) {
+	if(discriminant < 0) {
 		return Point();
 	}
-	
-	double t = (-b-sqrt(inner)) / 2*a;
 
-	if(t < 0) {
-		return Point();
+	float q;
+	if(b < 0) { 
+		q = (-b - sqrt(discriminant)) / 2.0;
 	} else {
-		return Point(x0+t*dx, y0+t*dy, z0+t*dz);
+		q = (-b + sqrt(discriminant)) / 2.0;
 	}
+
+	double t0 = q / a;
+	double t1 = c / q; 
+		
+	if(t0 > t1) {
+		double temp = t1;
+		t1 = t0;
+		t0 = temp;
+	}
+
+	if(t1 < 0) {
+		return Point();
+	}
+
+	double intersect = t0 < 0 ? t1 : t0;
+
+	return Point(dx * intersect + ox, dy * intersect + oy, dz * intersect + oz);
 }
