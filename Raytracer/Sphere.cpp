@@ -22,9 +22,9 @@ Point Sphere::closestIntersect(const Point& origin, const Point& directionVector
 	double dy = directionVector.y();
 	double dz = directionVector.z();
 
-	double ox = rayOrigin.x();
-	double oy = rayOrigin.y();
-	double oz = rayOrigin.z();
+	double ox = origin.x();
+	double oy = origin.y();
+	double oz = origin.z();
 	
 	double r = mRadius;
 
