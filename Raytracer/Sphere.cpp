@@ -1,11 +1,13 @@
 #include "Sphere.h"
 
-Sphere::Sphere(Point center, Color color, double radius, bool isLightSource): 
+#include <cmath>
+
+Sphere::Sphere(const Point& center, const Color& color, double radius, bool isLightSource): 
 	Polygon(center, color, isLightSource), mRadius(radius)
 	{}
 
 //returns 0 if there is no point of intersection.
-Point Sphere::closestIntersect(Point p0, Point p1) {
+Point Sphere::closestIntersect(const Point& p0, const Point& p1) {
 	//determining the vector
 	double dx0 = p1.x() - p0.x();
 	double dy0 = p1.y() - p0.y();

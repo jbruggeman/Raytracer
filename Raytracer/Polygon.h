@@ -1,13 +1,14 @@
 #ifndef POLYGON_H
 #define POLYGON_H
 
-#include "Common.h"
+#include "Point.h"
+#include "Color.h"
 
 class Polygon { 
 	public: 
-		Polygon(Point Center, Color, bool);
+		Polygon(const Point& center, const Color& color, bool);
 		~Polygon();
-		virtual Point closestIntersect(Point p0, Point p1) = 0;
+		virtual Point closestIntersect(const Point& p0, const Point& p1) = 0;
 
 		bool isLightSource() { return mIsLightSource; }
 		Point center() { return mCenter; }

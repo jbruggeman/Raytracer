@@ -1,6 +1,6 @@
 #include "Polygon.h"
 
-Polygon::Polygon(Point center, Color color, bool isLightSource):
+Polygon::Polygon(const Point& center, const Color& color, bool isLightSource):
 	mCenter(center), mColor(color), mIsLightSource(isLightSource)
 {
 }

@@ -1,3 +1,5 @@
 *.bmp
 *.tlog
 *.obj
+*.lastbuildstate
+*.log

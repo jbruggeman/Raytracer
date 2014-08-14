@@ -3,6 +3,7 @@
 
 #include <cstdio>
 #include <iostream>
+#include <vector>
 
 #include "EasyBMP.h"
 
@@ -23,12 +24,12 @@ int main() {
 
 	Point origin(0, 0, 0);
 	
-	PixelMap* map = new PixelMap(focalLength, height, width, verticalPixels, horizontalPixels);
+	PixelMap map(focalLength, height, width, verticalPixels, horizontalPixels);
 
-	polygons.push_back(new Sphere(Point(15, 5, 5), Color(80, 0, 0), 5.0, false));
-	polygons.push_back(new Sphere(Point(15, 5, -5), Color(0, 80, 0), 5.0, false));
-	polygons.push_back(new Sphere(Point(15, -5, 5), Color(0, 0, 80), 5.0, false));
-	polygons.push_back(new Sphere(Point(-15, 20, -20), Color(127, 127, 127), 0, true));
+	polygons.push_back(new Sphere(Point(15, 5, 5), Color(80, 0, 0), 3.0, false));
+	polygons.push_back(new Sphere(Point(15, 5, -5), Color(0, 80, 0), 3.0, false));
+	polygons.push_back(new Sphere(Point(15, -5, 5), Color(0, 0, 80), 3.0, false));
+	polygons.push_back(new Sphere(Point(-15, 0, 0), Color(127, 127, 127), 0, true));
 
 	BMP Output;
 	Output.SetSize(horizontalPixels, verticalPixels);
@@ -39,7 +40,7 @@ int main() {
 	int hit_count=0;
 	for(int i=0; i < verticalPixels; i++) {
 		for(int j=0; j < horizontalPixels; j++) {
-			Point pixelMapPoint = map->queryLocation(i,j);
+			Point pixelMapPoint = map.queryLocation(i,j);
 
 			if(!pixelMapPoint.valid()) {
 				cout << "Error - point is not valid!" << endl;
@@ -57,7 +58,7 @@ int main() {
 			
 				//getting the distance to the point
 				if(p.valid()) {
-					t_dist = point_distance(p, origin);
+					t_dist = Point::point_distance(p, origin);
 				} else {
 					t_dist = -1;
 				}
@@ -77,17 +78,17 @@ int main() {
 					if(polygons[k]->isLightSource()) {
 						Point centerOfLight = polygons[k]->center();
 
-						Point centerOfClosesPolygon = closest_polygon->center();
+						Point centerOfClosestPolygon = closest_polygon->center();
 						
-						Point directionVector(closest_point.x() - centerOfClosesPolygon.x(), 
-										      closest_point.y() - centerOfClosesPolygon.y(),
-										      closest_point.z() - centerOfClosesPolygon.z()); 
+						Point directionVector(closest_point.x() - centerOfClosestPolygon.x(), 
+										      closest_point.y() - centerOfClosestPolygon.y(),
+										      closest_point.z() - centerOfClosestPolygon.z()); 
 						
 						Point lightVector(centerOfLight.x() - closest_point.x(), 
 										  centerOfLight.y() - closest_point.y(),
 										  centerOfLight.z() - closest_point.z()); 
 
-						illumination_const += calc_illumination(directionVector, lightVector);
+						illumination_const += Point::calc_illumination(directionVector, lightVector);
 						//cout << "illumination_const: " << illumination_const << endl;
 					}
 				}

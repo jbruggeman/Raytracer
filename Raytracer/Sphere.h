@@ -5,8 +5,8 @@
 
 class Sphere: public Polygon {
     public:
-		Sphere(Point center, Color color, double radius, bool isLightSource);
-		Point closestIntersect(Point p0, Point p1);
+		Sphere(const Point& center, const Color& color, double radius, bool isLightSource);
+		Point closestIntersect(const Point& p0, const Point& p1);
 		
 	protected:
 		double mRadius;

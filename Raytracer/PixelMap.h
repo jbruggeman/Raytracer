@@ -1,7 +1,7 @@
 #ifndef PIXELMAP_H
 #define PIXELMAP_H
 
-#include "Common.h"
+#include "Point.h"
 
 class PixelMap { 
 	public:
